@@ -1,0 +1,17 @@
+[Interface]
+PrivateKey = <%= @private_key %>
+<%- if @listen_port != 0 -%>
+ListenPort = <%= @listen_port %>
+<%- end -%>
+<%- if @save_config -%>
+SaveConfig = <%= @save_config %>
+<%- end -%>
+Address    = <%= @address %>
+<%- if @dns_servers -%>
+DNS        = <%= @dns_servers.join(",") %>
+<%- end -%>
+<%- if @manage_masquerade_rules -%>
+PostUp     = iptables -A FORWARD -i <%= @name %> -j ACCEPT; iptables -t nat -A POSTROUTING -o <%= @internet_interface_name %> -j MASQUERADE; ip6tables -A FORWARD -i <%= @name %> -j ACCEPT; ip6tables -t nat -A POSTROUTING -o <%= @internet_interface_name %> -j MASQUERADE
+PostDown   = iptables -D FORWARD -i <%= @name %> -j ACCEPT; iptables -t nat -D POSTROUTING -o <%= @internet_interface_name %> -j MASQUERADE; ip6tables -D FORWARD -i <%= @name %> -j ACCEPT; ip6tables -t nat -D POSTROUTING -o <%= @internet_interface_name %> -j MASQUERADE
+<%- end -%>
+

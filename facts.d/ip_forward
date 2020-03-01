@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+ipf=$(sysctl -n net.ipv4.ip_forward)
+echo "ip_forward=$ipf"

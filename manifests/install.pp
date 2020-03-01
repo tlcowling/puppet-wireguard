@@ -1,5 +1,19 @@
 class wireguard::install {
-  package { 'wireguard-tools':
-    ensure => present,
+  case $::osfamily {
+    'Debian','RedHat', 'Amazon': {
+      package { 'wireguard':
+        ensure => present,
+      }
+    }
+    'Darwin': {
+      package { 'wireguard':
+        ensure   => present,
+        provider => 'brew',
+      }
+    }
+    default: {
+      fail("${::operatingsystem} not supported")
+    }
   }
+
 }
