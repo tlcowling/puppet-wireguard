@@ -10,8 +10,8 @@
 class wireguard::config (
   $config_path = $::wireguard::params::config_path,
   $manage_wireguard_config_directory = $::wireguard::params::manage_wireguard_config_directory,
-  # Array[Wireguard::Server] $servers,
-  $servers,
+  #Array[Wireguard::Server] $servers,
+  $servers = {},
 ) {
   file { $config_path:
     path    => $config_path,
