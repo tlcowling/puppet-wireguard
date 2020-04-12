@@ -32,15 +32,4 @@ define wireguard::server (
       content => template('wireguard/peer.conf.erb'),
     }
   }
-
-  if $notify_email_address != "" {
-    exec { "email updated config to ${notify_email_address} for wg-${name}":
-      subscribe   => Concat["/etc/wireguard/wg-${name}.conf"],
-      command     => "cat /tmp/mail-${name}.txt | mail -s 'Updated VPN Configuration' ${notify_email_address} -a /etc/wireguard/wg-${name}.conf",
-      path        => ['/usr/bin','/bin'],
-      logoutput   => true,
-      refreshonly => true,
-      require     => File["/tmp/mail-${name}.txt"],
-    }
-  }
 }
