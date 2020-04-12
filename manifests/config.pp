@@ -10,8 +10,7 @@
 class wireguard::config (
   $config_path = $::wireguard::params::config_path,
   $manage_wireguard_config_directory = $::wireguard::params::manage_wireguard_config_directory,
-  #Array[Wireguard::Server] $servers,
-  $servers = {},
+  Hash[String, Hash[String, Any]] $servers = {},
 ) {
   file { $config_path:
     path    => $config_path,
@@ -21,13 +20,16 @@ class wireguard::config (
     purge   => $manage_wireguard_config_directory,
     recurse => $manage_wireguard_config_directory,
   }
-  create_resources(wireguard::server, $servers)
-  # $servers.each |$server| {
-  #   wireguard::server { $server['description']:
-  #     description => $server['description'],
-  #     private_key =>
-  #   }
-  # }
+
+  $servers.each |$name, $server| {
+    wireguard::server { $name:
+       endpoint      => $server['endpoint'],
+       private_key   => $server['private_key'],
+       public_key    => $server['public_key'],
+       address       => $server['address'],
+       peers         => $server['peers'],
+    }
+  }
   # exec { "generate keys for ${name}":
   #   cwd     => $config_path,
   #   command => "wg genkey | tee privatekey | wg pubkey > publickey",

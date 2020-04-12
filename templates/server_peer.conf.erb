@@ -1,0 +1,12 @@
+<%- if @peer_name -%>
+# <%= @peer_name %>
+<%- end -%>
+[Peer]
+<%- if @preshared_key -%>
+PresharedKey = <%= @preshared_key %>
+<%- end -%>
+PublicKey = <%= @client_public_key %>
+<%- if @allowed_ips -%>
+AllowedIPs = <%= @allowed_ips.join(",") %>
+<%- end -%>
+

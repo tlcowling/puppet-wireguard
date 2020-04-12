@@ -1,0 +1,22 @@
+[Interface]
+PrivateKey = <%= @private_key %>
+Address = <%= @private_address %>
+<%- if @dns_servers -%>
+DNS        = <%= @dns_servers.join(",") %>
+<%- end -%>
+
+[Peer]
+<%- if @preshared_key -%>
+PresharedKey = <%= @preshared_key %>
+<%- end -%>
+PublicKey = <%= @server_public_key %>
+<%- if @server_endpoint -%>
+Endpoint = <%= @server_endpoint %>
+<%- end -%>
+<%- if @allowed_ips -%>
+AllowedIPs = <%= @allowed_ips.join(",") %>
+<%- end -%>
+<%- if @persistent_keepalive -%>
+PersistentKeepalive = <%= @persistent_keepalive %>
+<%- end -%>
+

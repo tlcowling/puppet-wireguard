@@ -1,3 +1,6 @@
+<%- if @name -%>
+# <%= @name %>
+<%- end -%>
 [Interface]
 PrivateKey = <%= @private_key %>
 <%- if @listen_port != 0 -%>
