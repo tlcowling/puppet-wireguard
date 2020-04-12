@@ -5,7 +5,7 @@ class wireguard (
 
   # validate parameters here
   if $ip_forward == "0" {
-    warning('For wireguard to function, ip_forwarding needs be enabled')
+    warning('For wireguard to function, ip_forwarding needs to be enabled')
   }
 
   class { '::wireguard::install': }
