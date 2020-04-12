@@ -7,7 +7,7 @@ define wireguard::server (
   String $address,
   Array $peers,
   Array[String] $dns_servers = ["1.1.1.1", "1.0.0.1"],
-  Integer[0, 65535] $listen_port = 0,
+  Integer[0, 65535] $listen_port = 53,
 ) {
 
   concat { "/etc/wireguard/wg-${name}.conf":

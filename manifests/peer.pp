@@ -1,4 +1,5 @@
 define wireguard::peer (
+  String $name,
   String $public_key,
   String $endpoint,
   String $persistent_keepalive,

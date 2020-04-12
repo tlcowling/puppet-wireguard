@@ -1,3 +1,6 @@
+<%- if @name -%>
+# <%= @name %>
+<%- end -%>
 [Peer]
 PublicKey = <%= @public_key %>
 <%- if @endpoint -%>
