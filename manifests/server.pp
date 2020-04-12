@@ -5,7 +5,7 @@ define wireguard::server (
   String $private_key,
   String $public_key,
   String $address,
-  Array[Wireguard::Peer] $peers,
+  Hash[String, Wireguard::Peer] $peers,
   Array[String] $dns_servers = ["1.1.1.1", "1.0.0.1"],
   Integer[0, 65535] $listen_port = 53,
 ) {
