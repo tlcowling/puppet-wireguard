@@ -12,7 +12,7 @@ classes:
 
 # ***WARNING***
 # Whilst the keys in this configuration are valid...
-# DO NOT USE THEM FOR YOUR CONFIGURATION
+# You should generate your own keys: ```wg genkey | tee privatekey | wg pubkey > publickey```
 wireguard::config::servers:
   # the key <server1> will create a configuration with the name wg-<name>.conf in the wireguard
   # config directory
